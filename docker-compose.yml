@@ -32,6 +32,8 @@ services:
     restart: on-failure
     ports:
       - 8024:80
+    depends_on:
+      - minio
 
 networks:
   adv-net:

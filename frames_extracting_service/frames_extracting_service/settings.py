@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'django_minio_backend.apps.DjangoMinioBackendConfig',
     'app_main.apps.AppMainConfig',
 ]
@@ -132,6 +133,8 @@ MINIO_SECRET_KEY = os.getenv('MINIO_SECRET_KEY')
 
 MINIO_ENDPOINT = 'minio:9000'
 MINIO_USE_HTTPS = False
+MINIO_EXTERNAL_ENDPOINT = "localhost:9002"
+MINIO_EXTERNAL_ENDPOINT_USE_HTTPS = False
 MINIO_URL_EXPIRY_HOURS = timedelta(days=1)  # Default is 7 days (longest) if not defined
 MINIO_CONSISTENCY_CHECK_ON_START = True
 MINIO_PRIVATE_BUCKETS = [

@@ -11,7 +11,8 @@ class Media(models.Model):
 
 
 class MediaFrames(models.Model):
+    uploaded_at = models.DateTimeField(auto_now_add=True)
     media = models.ForeignKey(Media, on_delete=models.CASCADE)
-    uploaded_at = models.FileField(storage=MinioBackend(bucket_name='frames'),
+    frame = models.FileField(storage=MinioBackend(bucket_name='frames'),
                                     upload_to=get_frames_upload_to)
     
