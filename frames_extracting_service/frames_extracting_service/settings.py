@@ -138,5 +138,6 @@ MINIO_PRIVATE_BUCKETS = [
 ]
 MINIO_PUBLIC_BUCKETS = [
     'media',
+    'frames',
 ]
 MINIO_BUCKET_CHECK_ON_SAVE = True  # Default: True // Creates bucket if missing, then save
