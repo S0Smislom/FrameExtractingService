@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - 9002:9000
+      - 9001:9001
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./minio_data:/data
+    labels:
+      - traefik.enable=false
+    env_file:
+      - ./frames_extracting_service/.env
+    networks:
+      - adv-net
+
+  frames-extracting-service:
+    container_name: frames_extracting_service
+    build:
+      context: ./frames_extracting_service
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+      - ./frames_extracting_service:/app
+    env_file:
+      - ./frames_extracting_service/.env
+    networks:
+      - adv-net
+    restart: on-failure
+    ports:
+      - 8024:80
+
+networks:
+  adv-net:
+    external: true
+    driver: bridge
+secrets:
+  secret_key:
+    file: ./secrets/minio_secret_key
+  access_key:
+    file: ./secrets/minio_access_key
