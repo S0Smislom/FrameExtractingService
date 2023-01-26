@@ -5,7 +5,7 @@ from .models import Media, MediaFrames
 class MediaSerizlier(serializers.ModelSerializer):
     class Meta:
         model = Media
-        fields = ('file',)
+        fields = '__all__'
 
 
 class MediaFramesSerializer(serializers.ModelSerializer):
