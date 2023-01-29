@@ -1,4 +1,5 @@
 from app_main.models import MediaFrames
+import zipfile
 
 def create_frame(media, file):
     frame = MediaFrames.objects.create(media=media)
@@ -15,3 +16,10 @@ def upload_frames(path_list, media):
 
 def clear_db(media):
     MediaFrames.objects.filter(media = media).delete()
+
+def create_frames_zip(path_list, archive_temp_path, media):
+    zip_path = f'{archive_temp_path}/{media.pk}.zip'
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for path in path_list:
+            zipf.write(path, path.split('/')[-1])
+    return zip_path
