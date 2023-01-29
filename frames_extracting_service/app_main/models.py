@@ -12,7 +12,7 @@ class Media(models.Model):
 
 
 class MediaFrames(models.Model):
-    """Модель для хзранения кадров (в формате .zip)"""
+    """Модель для хранения кадров (в формате .zip)"""
     uploaded_at = models.DateTimeField(auto_now_add=True)
     media = models.ForeignKey(Media, on_delete=models.CASCADE)
     frame = models.FileField(storage=MinioBackend(bucket_name='frames'),

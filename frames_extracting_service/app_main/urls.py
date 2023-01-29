@@ -5,8 +5,8 @@ from . import views
 
 router = DefaultRouter()
 router.register(r'media', views.MediaViewSet)
+router.register(r'frames', views.MediaFramesViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('frames/', views.MediaFramesView.as_view()),
 ]
